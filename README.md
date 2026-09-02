@@ -44,7 +44,9 @@ This system bridges that gap by modeling the entire supply chain as an interconn
 
 - **Natural Language to Cypher Translation**: Converts complex supply-chain questions into deterministic Cypher queries with strict ontology grounding and zero SQL/Cypher hallucination.
 - **Multi-Hop Dependency & Bottleneck Tracing**: Traces upstream purchase order delays across bills of materials (BOM) to pinpoint affected finished products and manufacturing facilities:
-  $$\text{Supplier} \xrightarrow{\text{ISSUED\_PO}} \text{PurchaseOrder} \xrightarrow{\text{ORDERS\_PART}} \text{Part} \xrightarrow{\text{USED\_IN}} \text{Product}$$
+  ```text
+  (Supplier) ──[:ISSUED_PO]──> (PurchaseOrder) ──[:ORDERS_PART]──> (Part) ──[:USED_IN]──> (Product)
+  ```
 - **Interactive Force-Directed & Hierarchical Graph Visualizer**: Built with **Vis.js**, supporting real-time physics simulation, zoom/pan controls, level-by-level hierarchical supply-chain flow layouts, and slide-in node property inspection.
 - **Dynamic Search Path Highlighting**: Automatically rewrites queries during execution to isolate and highlight traversed graph nodes and relationships in neon accents.
 - **Four-Stage Real-Time Stepper**: Visual execution progress tracker showing AI translation $\rightarrow$ database execution $\rightarrow$ graph path traversal $\rightarrow$ executive synthesis.
@@ -58,18 +60,18 @@ This system bridges that gap by modeling the entire supply chain as an interconn
 
 ```mermaid
 graph TD
-    A[User Natural Language Query] --> B[FastAPI Backend /api/query]
-    B --> C[Gemini Cypher Generator]
-    C -->|Grounding with Graph Schema| D[Deterministic Cypher Query]
-    D --> E[Query Traversal Rewriter]
-    E --> F[Neo4j Database Engine]
-    F -->|Executes Cypher & Fetches Traversal Path| G[Raw DB Records & Traversed Node IDs]
-    G --> H[Gemini Answer Synthesizer]
-    G --> I[Gemini Citation Extractor]
-    H --> J[Executive Markdown Report]
-    I --> K[Structured Citation Cards]
-    G --> L[Vis.js Canvas: Highlight Active Traversal Path]
-    J & K & L --> M[Interactive Web Dashboard / Frontend UI]
+    A["User Natural Language Query"] --> B["FastAPI Backend (/api/query)"]
+    B --> C["Gemini Cypher Generator"]
+    C -->|Grounding with Graph Schema| D["Deterministic Cypher Query"]
+    D --> E["Query Traversal Rewriter"]
+    E --> F["Neo4j Database Engine"]
+    F -->|Executes Cypher & Fetches Traversal Path| G["Raw DB Records & Traversed Node IDs"]
+    G --> H["Gemini Answer Synthesizer"]
+    G --> I["Gemini Citation Extractor"]
+    H --> J["Executive Markdown Report"]
+    I --> K["Structured Citation Cards"]
+    G --> L["Vis.js Canvas: Highlight Traversal Path"]
+    J & K & L --> M["Interactive Web Dashboard"]
 
     classDef blue fill:#3b82f6,stroke:#60a5fa,color:#fff;
     classDef green fill:#10b981,stroke:#34d399,color:#fff;
@@ -92,7 +94,7 @@ graph LR
     PO -->|ORDERS_PART| Part["Part (ID, Name, Price, Criticality)"]
     PO -->|DELIVERED_TO| Plant["Plant (ID, Name, Location)"]
     Plant -->|MANUFACTURES| Product["Product (ID, Name, Customer)"]
-    Part -->|USED_IN {quantity_required}| Product
+    Part -->|"USED_IN [qty_required]"| Product
 
     classDef supplier fill:#3b82f6,stroke:#60a5fa,color:#fff;
     classDef po fill:#eab308,stroke:#facc15,color:#000;
