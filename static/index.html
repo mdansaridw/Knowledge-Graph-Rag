@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain GraphRAG</title>
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Vis.js Standalone for interactive network graphs -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
+    <!-- Marked JS for Markdown Parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <!-- LEFT PANEL: Querying & Structured Analysis -->
+        <aside class="control-panel">
+            <header class="panel-header">
+                <div class="logo">SupplyChain AI</div>
+                <h1 class="panel-title">Knowledge GraphRAG</h1>
+                <p class="panel-subtitle">Supply Chain Intelligence</p>
+            </header>
+            
+            <!-- Query Input Section -->
+            <section class="query-section">
+                <form id="query-form" class="query-form">
+                    <input type="text" id="query-input" placeholder="Ask a supply chain risk question..." required autocomplete="off">
+                    <button type="submit" id="submit-btn" aria-label="Submit query">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </form>
+                
+                <!-- Quick Demo Queries -->
+                <div class="quick-queries">
+                    <span class="quick-label">Demo Queries:</span>
+                    <button class="quick-btn" data-query="Which products are affected by Supplier Alpha's late deliveries?">Supplier Alpha Delays</button>
+                    <button class="quick-btn" data-query="Find all pending purchase orders containing High criticality parts and tell me which plants they go to.">Critical Pending POs</button>
+                    <button class="quick-btn" data-query="Calculate the total order value of all late purchase orders.">Total Late Value</button>
+                </div>
+            </section>
+            
+            <!-- Dynamic Real-Time Stepper -->
+            <section id="stepper-section" class="stepper-section hidden">
+                <h3 class="section-title">Query Processing Flow</h3>
+                <div class="stepper">
+                    <div class="step" id="step-1">
+                        <div class="step-icon"></div>
+                        <div class="step-details">
+                            <span class="step-label">Step 1: Cypher Generation</span>
+                            <span class="step-desc">Translating question to graph query...</span>
+                        </div>
+                    </div>
+                    <div class="step" id="step-2">
+                        <div class="step-icon"></div>
+                        <div class="step-details">
+                            <span class="step-label">Step 2: Database Execution</span>
+                            <span class="step-desc">Querying Neo4j knowledge graph...</span>
+                        </div>
+                    </div>
+                    <div class="step" id="step-3">
+                        <div class="step-icon"></div>
+                        <div class="step-details">
+                            <span class="step-label">Step 3: Graph Traversal</span>
+                            <span class="step-desc">Highlighting traversed path...</span>
+                        </div>
+                    </div>
+                    <div class="step" id="step-4">
+                        <div class="step-icon"></div>
+                        <div class="step-details">
+                            <span class="step-label">Step 4: Answer Synthesis</span>
+                            <span class="step-desc">Synthesizing response with citations...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Code Explanation Box -->
+            <section id="code-section" class="code-section hidden">
+                <h3 class="section-title">Generated Cypher Query</h3>
+                <pre class="cypher-code"><code id="cypher-output"></code></pre>
+                
+                <h3 class="section-title">Database Query Results</h3>
+                <pre class="cypher-code" style="color: #10b981; max-height: 200px;"><code id="results-output"></code></pre>
+                
+                <h3 class="section-title">Logical Graph Traversal Hops</h3>
+                <div id="traversal-hops" class="traversal-hops"></div>
+            </section>
+            
+            <!-- Conversational Response Panel -->
+            <section id="response-section" class="response-section hidden">
+                <h3 class="section-title">Analyst Report</h3>
+                <div id="response-content" class="response-content"></div>
+            </section>
+            
+            <!-- Expandable Citations / Traceability Cards -->
+            <section id="citations-section" class="citations-section hidden">
+                <h3 class="section-title">Source Traceability</h3>
+                <div id="citations-list" class="citations-list"></div>
+            </section>
+        </aside>
+        
+        <!-- RIGHT PANEL: Full-Screen Interactive Graph Visualizer -->
+        <main class="visualizer-panel">
+            <div class="visualizer-header">
+                <div style="display: flex; align-items: center; gap: 12px; pointer-events: auto;">
+                    <h2>Supply Chain Knowledge Graph</h2>
+                    <button id="reset-graph-btn" class="quick-btn" style="background: rgba(255, 255, 255, 0.08); padding: 4px 10px; margin: 0;">Reset View</button>
+                    <button id="toggle-layout-btn" class="quick-btn" style="background: rgba(255, 255, 255, 0.08); padding: 4px 10px; margin: 0;">Hierarchical Flow</button>
+                </div>
+                <div class="legend">
+                    <span class="legend-item"><span class="color-dot supplier"></span>Supplier</span>
+                    <span class="legend-item"><span class="color-dot po"></span>Purchase Order</span>
+                    <span class="legend-item"><span class="color-dot part"></span>Part</span>
+                    <span class="legend-item"><span class="color-dot product"></span>Product</span>
+                    <span class="legend-item"><span class="color-dot plant"></span>Plant</span>
+                    <span class="legend-item"><span class="color-dot path"></span>Traversed Path</span>
+                </div>
+            </div>
+            <div id="graph-canvas" class="graph-canvas"></div>
+            <div class="instructions-overlay">
+                Drag nodes to inspect relationships. Scroll to zoom. Click any node for properties.
+            </div>
+            
+            <!-- Slide-in Node Properties Sidebar -->
+            <aside id="node-sidebar" class="node-sidebar">
+                <div class="sidebar-header">
+                    <span id="sidebar-node-type" class="sidebar-node-type">Node Details</span>
+                    <button id="close-sidebar-btn" class="close-btn" aria-label="Close sidebar">&times;</button>
+                </div>
+                <div class="sidebar-content">
+                    <h3 id="sidebar-node-label" class="sidebar-node-label">Node Label</h3>
+                    <div id="sidebar-properties" class="sidebar-properties"></div>
+                </div>
+            </aside>
+        </main>
+        
+    </div>
+
+    <!-- Client Application Logic -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

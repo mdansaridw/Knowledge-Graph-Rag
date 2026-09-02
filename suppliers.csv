@@ -1,0 +1,11 @@
+supplier_id,name,location,risk_rating
+SUP001,Supplier Alpha,USA,Low
+SUP002,Supplier Beta,USA,Medium
+SUP003,Supplier Gamma,USA,Low
+SUP004,Supplier Delta,USA,Low
+SUP005,Supplier Epsilon,South Korea,Low
+SUP006,Supplier Zeta,Taiwan,Medium
+SUP007,Supplier Eta,Germany,Low
+SUP008,Supplier Theta,Switzerland,Medium
+SUP009,Supplier Iota,USA,Low
+SUP010,Supplier Kappa,Switzerland,High

@@ -1,0 +1,6 @@
+product_id,name,customer,plant_id
+PROD001,Smart Gateway,Customer A,PLANT001
+PROD002,Medical Monitor,Customer B,PLANT002
+PROD003,EV Charging Controller,Customer C,PLANT003
+PROD004,Industrial Switch,Customer D,PLANT004
+PROD005,Server Board,Customer E,PLANT001

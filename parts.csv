@@ -1,0 +1,16 @@
+part_id,name,category,unit_price,criticality
+PART001,STM32 Microcontroller,Semiconductor,12.5,High
+PART002,ARM Cortex Processor,Semiconductor,45.0,High
+PART003,10uF Capacitor,Passive,0.05,Low
+PART004,10k Ohm Resistor,Passive,0.02,Low
+PART005,USB-C Connector,Connector,1.2,Medium
+PART006,Bluetooth Module,RF Module,5.5,High
+PART007,Wi-Fi Transceiver,RF Module,7.2,High
+PART008,Power Management IC,Semiconductor,3.8,High
+PART009,Voltage Regulator,Semiconductor,1.5,Medium
+PART010,HDMI Port,Connector,2.1,Medium
+PART011,8GB DDR4 RAM,Memory,35.0,High
+PART012,256GB SSD Flash,Memory,55.0,High
+PART013,LED Driver,Semiconductor,2.2,Low
+PART014,Temperature Sensor,Sensor,1.8,Medium
+PART015,Ethernet Controller,Semiconductor,4.5,High
