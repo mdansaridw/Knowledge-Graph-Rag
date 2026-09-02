@@ -29,12 +29,18 @@ This system bridges that gap by modeling the entire supply chain as an interconn
 
 # Screenshots & Interface
 
-<sub>💡 The web dashboard provides real-time query pipeline progression, live graph visualization, path highlighting, and structured analyst reporting.</sub>
+<sub>💡 Click on any image to view it in full size and high resolution.</sub>
 
 <table border="0">
   <tr>
-    <td width="50%"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Supply Chain Control Tower" /><br/><sub><b>Global Supply Chain Map & Interactive Network</b></sub></td>
-    <td width="50%"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Graph Analytics" /><br/><sub><b>Real-Time Dependency Tracing & Risk Analytics</b></sub></td>
+    <td width="33.3%"><a href="https://github.com/user-attachments/assets/c423a20f-2170-4598-9c04-fc2e52103b37"><img src="https://github.com/user-attachments/assets/0c40721b-1e0a-4516-a7b5-db166f41a518" alt="Screenshot 1" /></a></td>
+    <td width="33.3%"><a href="https://github.com/user-attachments/assets/ad26a635-8c45-4abd-a061-613bc0ce769c"><img src="https://github.com/user-attachments/assets/728660d4-1b3c-48de-a583-17d684f7e184" alt="Screenshot 2" /></a></td>
+    <td width="33.3%"><a href="https://github.com/user-attachments/assets/78a1c1fb-7e7b-43eb-b923-23f5e66424f8"><img src="https://github.com/user-attachments/assets/7cb19c8d-9da0-42f9-97da-02aa7d70aba5" alt="Screenshot 3" /></a></td>
+  </tr>
+  <tr>
+    <td width="33.3%"><a href="https://github.com/user-attachments/assets/1fa79f51-2027-48d8-88ff-807a3a3476cc"><img src="https://github.com/user-attachments/assets/f663cb2c-268c-438e-951d-07ce516dbb95" alt="Screenshot 4" /></a></td>
+    <td width="33.3%"><a href="https://github.com/user-attachments/assets/9b437c7e-d350-4582-9a95-0eeb98d33d2f"><img src="https://github.com/user-attachments/assets/026b7050-a2fa-4f4c-aea5-cb02537d9afd" alt="Screenshot 5" /></a></td>
+    <td width="33.3%"><a href="https://github.com/user-attachments/assets/74c1250f-c818-4f31-80e8-149eaa41dfa8"><img src="https://github.com/user-attachments/assets/ce8a7dc7-a001-41f2-a30f-1b53ddb3ffe7" alt="Screenshot 6" /></a></td>
   </tr>
 </table>
 
