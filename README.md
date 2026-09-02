@@ -210,7 +210,7 @@ graph LR
 ### 1. Clone & Set Up Environment
 
 ```bash
-git clone https://github.com/<your-username>/supply-chain-graphrag.git
+git clone [https://github.com/<your-username>/supply-chain-graphrag.git](https://github.com/mdansaridw/Knowledge-Graph-Rag.git)
 cd supply-chain-graphrag
 
 # Create virtual environment
