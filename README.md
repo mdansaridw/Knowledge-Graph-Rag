@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="https://github.com/user-attachments/assets/402dda48-cad2-4d02-b473-86b3e5fc8c28" alt="KnowLedge Graph Rag on Supply chain Database" width="100%" />
+</p>
+
+<p align="center">
   <h1 align="center">Supply Chain Knowledge Graph RAG (GraphRAG)</h1>
   <p align="center">
     <strong>An Intelligent Graph-Native RAG System for Multi-Tier Supply Chain Risk Analysis, Dependency Tracing, and Bottleneck Discovery</strong>
