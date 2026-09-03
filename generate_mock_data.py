@@ -3,10 +3,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# Set random seed for reproducibility
 np.random.seed(42)
 
-# Output directory relative to this script
 DATA_DIR = Path(__file__).resolve().parent
 
 # ---------------------------------------------------------

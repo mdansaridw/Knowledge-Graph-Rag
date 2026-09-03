@@ -13,11 +13,11 @@ from neo4j import GraphDatabase
 from google import genai
 from google.genai import types
 
-# Suppress non-critical SDK advisory notices
+
 warnings.filterwarnings("ignore")
 logging.getLogger("google.genai").setLevel(logging.ERROR)
 
-# Load environment variables
+
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
