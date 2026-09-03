@@ -232,7 +232,7 @@ Copy the template configuration file:
 
 ```bash
 # On Windows (PowerShell):
-Copy-Item .env.example .env
+copy .env.example .env
 # On macOS/Linux:
 cp .env.example .env
 ```
